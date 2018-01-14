@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <style type="text/css">
+      @keyframes move-twink-back {
+        from {background-position:0 0;}
+        to {background-position:-10000px 5000px;}
+      }
+      @-webkit-keyframes move-twink-back {
+        from {background-position:0 0;}
+        to {background-position:-10000px 5000px;}
+      }
+        @-moz-keyframes move-twink-back {
+        from {background-position:0 0;}
+        to {background-position:-10000px 5000px;}
+      }
+      @-ms-keyframes move-twink-back {
+        from {background-position:0 0;}
+        to {background-position:-10000px 5000px;}
+      }
+
+      .stars, .twinkling {
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        width:100%;
+        height:100%;
+        display:block;
+      }
+
+      .stars {
+        background:#000 url(media/stars.png) repeat top center;
+        z-index:0;
+      }
+
+      .twinkling{
+        background:transparent url(media/twinkling.png) repeat top center;
+        z-index:1;
+
+        -moz-animation:move-twink-back 200s linear infinite;
+        -ms-animation:move-twink-back 200s linear infinite;
+        -o-animation:move-twink-back 200s linear infinite;
+        -webkit-animation:move-twink-back 200s linear infinite;
+        animation:move-twink-back 200s linear infinite;
+      }
+      #space {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 90%;
+        width: 90%;
+
+
+      }
+      body {
+        background-color: black;
+      }
+    </style>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/howler.core.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $(".stars").hide();
+        $(".twinkling").hide();
+        $("#space").on("timeupdate",
+          function(event){
+            onTrackedVideoFrame(this.currentTime);
+        });
+      });
+      function onTrackedVideoFrame(currentTime){
+        if(currentTime > 15 && a == 0) {
+          moonin.play();
+          a = 1;
+        }
+        if(currentTime > 30) {
+          $("#space").fadeOut();
+          $(".stars").fadeIn();
+          $(".twinkling").fadeIn();
+          document.getElementById("space").pause();
+        }
+
+      }
+      var moonin = new Howl({
+          src: ['media/moonin.ogg']
+      });
+      var moonlo = new Howl({
+          src: ['media/moonlo.ogg'],
+          loop: true
+        });
+        moonin.on('end', function(){
+          moonlo.play();
+        });
+        var a = 0;
+    </script>
+  </head>
+
+  <body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <video id="space" autoplay>
+      <source src="media/apollo11.mp4" type="video/mp4" >
+   </video>
+  </body>
+</html>
