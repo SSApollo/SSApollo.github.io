@@ -45,7 +45,7 @@
         -webkit-animation:move-twink-back 200s linear infinite;
         animation:move-twink-back 200s linear infinite;
       }
-      .center {
+      #space {
         position: fixed;
         top: 50%;
         left: 50%;
@@ -53,7 +53,15 @@
         height: 90%;
         width: 90%;
       }
-
+      #dickord {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 90%;
+        width: 45%;
+        z-index: 100;
+      }
       body {
         background-color: black;
       }
@@ -62,6 +70,7 @@
     <script src="js/howler.core.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
+        $("#dickord").hide();
         $(".stars").hide();
         $(".twinkling").hide();
         $("#space").on("timeupdate",
@@ -78,6 +87,7 @@
           $("#space").fadeOut();
           $(".stars").fadeIn();
           $(".twinkling").fadeIn();
+          $("#dickord").fadeIn(2000);
           document.getElementById("space").pause();
         }
 
@@ -103,7 +113,7 @@
       <source src="media/apollo11.mp4" type="video/mp4" >
    </video>
     <a href="https://discord.gg/7DYXhM">
-      <img src="media/diclogo.png" class="center">
+      <img src="media/diclogo.png" id="dickord">
     </a>
   </body>
 </html>
