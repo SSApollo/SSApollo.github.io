@@ -59,8 +59,16 @@
         left: 50%;
         transform: translate(-50%, -50%);
         height: 90%;
-        width: 45%; 
+        width: 45%;
         z-index: 100;
+      }
+      .butt {
+        position: fixed;
+        background:none;
+        border:none;
+        color: white;
+        left: 47%;
+        top: 96%;
       }
       body {
         background-color: black;
@@ -71,26 +79,37 @@
     <script type="text/javascript">
       $(document).ready(function(){
         $("#dickord").hide();
+        $("#dickord").animate({
+          top: "+=3000px",
+        }, 'fast');
         $(".stars").hide();
         $(".twinkling").hide();
+        $("#dickord").show();
         $("#space").on("timeupdate",
           function(event){
-            onTrackedVideoFrame(this.currentTime);
+            animation(this.currentTime);
         });
       });
-      function onTrackedVideoFrame(currentTime){
+      function animation(currentTime, skip){
+        if(currentTime > 30 && b == 0 || skip == 1) {
+          $("#space").fadeOut();
+          $(".stars").fadeIn();
+          $(".twinkling").fadeIn();
+          $(".butt").hide();
+          $("#dickord").animate({
+            top: "-=2700px",
+          }, 1000);
+
+          b = 1;
+          document.getElementById("space").pause();
+        }
+        if (skip == 1){
+          moonlo.play();
+        }
         if(currentTime > 17 && a == 0) {
           moonin.play();
           a = 1;
         }
-        if(currentTime > 30) {
-          $("#space").fadeOut();
-          $(".stars").fadeIn();
-          $(".twinkling").fadeIn();
-          $("#dickord").fadeIn(2000);
-          document.getElementById("space").pause();
-        }
-
       }
       var moonin = new Howl({
           src: ['media/moonin.ogg']
@@ -103,6 +122,8 @@
           moonlo.play();
         });
         var a = 0;
+        var b = 0;
+
     </script>
   </head>
 
@@ -111,7 +132,8 @@
     <div class="twinkling"></div>
     <video id="space" class="center" autoplay>
       <source src="media/apollo11.mp4" type="video/mp4" >
-   </video>
+    </video>
+    <button onclick="animation(0, 1);" class="butt">Skip intro.</button>
     <a href="https://discord.gg/7DYXhM">
       <img src="media/diclogo.png" id="dickord">
     </a>
