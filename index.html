@@ -70,6 +70,20 @@
         left: 47%;
         top: 96%;
       }
+      #apollo {
+        position: fixed;
+        left: 90%;
+        top: 93%;
+        color: black;
+        z-index: 1000;
+      }
+      @font-face {
+        font-family: "Heavy-Data";
+        src: url('media/heavy_data.ttf');
+      }
+      .heavyfont {
+        font-family: Heavy-Data;
+      }
       body {
         background-color: black;
       }
@@ -79,6 +93,8 @@
     <script type="text/javascript">
       $(document).ready(function(){
         $("#dickord").hide();
+        $("#apollo").hide();
+        $("#apollo").css("color", "white");
         $("#dickord").animate({
           top: "+=100%",
         }, 'fast');
@@ -99,7 +115,7 @@
           $("#dickord").animate({
             top: "-=100%",
           }, 1500);
-
+          $("#apollo").fadeIn("slow");
           b = 1;
           document.getElementById("space").pause();
         }
@@ -133,9 +149,10 @@
     <video id="space" class="center" autoplay>
       <source src="media/apollo11.mp4" type="video/mp4" >
     </video>
-    <button onclick="animation(0, 1);" class="butt">Skip intro.</button>
+    <button onclick="animation(0, 1);" class="butt heavyfont">Skip intro.</button>
     <a href="https://discord.gg/7DYXhM">
       <img src="media/diclogo.png" id="dickord">
     </a>
+    <p id="apollo" class="heavyfont">Apollo Society</p>
   </body>
 </html>
