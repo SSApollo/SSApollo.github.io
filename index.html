@@ -55,7 +55,7 @@
       }
       #dickord {
         position: fixed;
-        top: 50%;
+        top: 150%;
         left: 50%;
         transform: translate(-50%, -50%);
         height: 90%;
@@ -92,21 +92,17 @@
     <script src="js/howler.core.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
-        $("#dickord").hide();
         $("#apollo").hide();
         $("#apollo").css("color", "white");
-        $("#dickord").animate({
-          top: "+=100%",
-        }, 'fast');
         $(".stars").hide();
         $(".twinkling").hide();
-        $("#dickord").show();
         $("#space").on("timeupdate",
           function(event){
             animation(this.currentTime);
         });
       });
       function animation(currentTime, skip){
+
         if(currentTime > 30 && b == 0 || skip == 1) {
           $("#space").fadeOut();
           $(".stars").fadeIn();
@@ -139,7 +135,7 @@
         });
         var a = 0;
         var b = 0;
-
+        var c = 0;
     </script>
   </head>
 
